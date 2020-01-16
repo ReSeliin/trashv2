@@ -1,0 +1,25 @@
+const Discord = require('discord.js');
+const ayarlar = require("../ayarlar/ayar.json")
+
+exports.run = (client, message, args, tools) => {
+  if(!args[0]) return message.channel.send(`:x: Hata \n Doğru Kullanım: ${ayarlar.prefix}reverse <yazı>`);
+
+  function reverseString(str) {
+      return str.split("").reverse().join("");
+  }
+
+  let sreverse = reverseString(args.join(' '))
+   
+  if(args[0] === sreverse) {
+  
+  sreverse = `${args.join(' ')}..Wait... You broke it!`
+  
+  }
+  const reverseEmbed = new Discord.RichEmbed()
+  .setAuthor(`${message.author.tag}`, message.author.avatarURL)
+  .setColor(0xFFF000)
+  .addField('Input: ', '```' + `${args.join(' ')}` + '```')
+  .addField('Output: ', '```' + `${sreverse}` + '```')
+  message.channel.send({embed: reverseEmbed})
+    
+}
